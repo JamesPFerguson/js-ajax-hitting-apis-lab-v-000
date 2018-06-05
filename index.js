@@ -23,3 +23,12 @@ function displayRepositories() {
   }).join('') + "</ul>";
   document.getElementById("repositories").innerHTML = repoList
 }
+
+function getCommits(el) {
+  name = el.dataset.repository
+  user = document.getElementById("username").value
+  const req = new XMLHttpRequest();
+  req.addEventListener("load", displayCommits);
+  req.open("GET", 'https://api.github.com/repos/' + user + '/' + name + '/commits');
+  req.send();
+}
